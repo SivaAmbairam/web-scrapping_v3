@@ -1,0 +1,6 @@
+https://www.nascoeducation.comhttps://www.nascoeducation.com/the-rise-garden-hydroponic-system-single-tier-x0000ne30474.html, requests.exceptions.ConnectionError
+https://www.nascoeducation.com/prepworks-bakers-prokeepers-wa35269.html, requests.exceptions.ConnectionError
+https://schoolspecialty.com/physical-education-sport/pe-health-resources/catch-welcome-banner-5-x-3-feet-2121852, requests.exceptions.ConnectionError
+https://www.nascoeducation.com/keva-structures-sb49047.html, requests.exceptions.ConnectionError
+https://www.nascoeducation.com/, requests.exceptions.ConnectionError
+https://schoolspecialty.com/, requests.exceptions.ConnectionError
