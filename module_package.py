@@ -8,6 +8,8 @@ import os
 import time
 from datetime import datetime
 from zenrows import ZenRowsClient
+import time
+from DrissionPage import ChromiumPage
 
 
 zenrows_api_key = ''
@@ -282,18 +284,32 @@ def get_zenrowa(url, params=None):
         return None
 
 
+class CloudflareBypasser:
+    def __init__(self, driver: ChromiumPage):
+        self.driver = driver
 
+    def clickCycle(self):
+        #reach the captcha button and click it
+        # if iframe does not exist, it means the page is already bypassed.
+        if self.driver.wait.ele_displayed('xpath://div/iframe',timeout=1.5):
+            time.sleep(1.5)
+            self.driver('xpath://div/iframe').ele("Verify you are human", timeout=2.5).click()
+            # The location of the button may vary time to time. I sometimes check the button's location and update the code.
 
-def get_dictionary(product_ids=None, product_names=None, product_quantities=None, product_prices=None,
-                   product_urls=None):
-    dictionary_1 = {
-        'product_id': product_ids,
-        'product_name': product_names,
-        'product_quantity': product_quantities,
-        'product_price': product_prices,
-        'product_url': product_urls
-    }
-    return dictionary_1
+    def isBypassed(self):
+        title = self.driver.title.lower()
+        # If the title does not contain "just a moment", it means the page is bypassed.
+        # This is a simple check, you can implement more complex checks.
+        return "just a moment" not in title
+
+    def bypass(self):
+        while not self.isBypassed():
+            time.sleep(2)
+            # A click may be enough to bypass the captcha, if your IP is clean.
+            # I haven't seen a captcha that requires more than 3 clicks.
+            print("Verification page detected.  Trying to bypass...")
+            time.sleep(2)
+            self.clickCycle()
 
 
 def strip_it(text):
